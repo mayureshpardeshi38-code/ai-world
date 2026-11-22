@@ -4,214 +4,311 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI WORLD - Free Tools</title>
+<title>AI WORLD</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#0b1020;color:white}
-header{background:#17213a;padding:20px 7%;font-size:25px;font-weight:bold;color:#9aaaff}
-nav{text-align:center;padding:15px;background:#121a30}
-nav a{color:white;text-decoration:none;margin:8px}
-main{max-width:1000px;margin:auto;padding:20px}
-h1,h2{text-align:center}
-.card{background:#17213a;padding:22px;border-radius:14px;margin:18px 0}
-input,textarea,select{width:100%;padding:12px;margin:8px 0 15px;border:1px solid #53617e;border-radius:8px;background:#0b1020;color:white}
-button{padding:12px 18px;border:0;border-radius:8px;background:#6477ff;color:white;font-weight:bold;cursor:pointer;margin:5px}
-.result{background:white;color:#20283a;padding:15px;border-radius:8px;white-space:pre-wrap;min-height:40px}
-#resume{background:white;color:#222;padding:25px;border-radius:10px;display:none}
-#resume p{color:#222;white-space:pre-wrap}
-#resume h3{color:#263b78;border-bottom:1px solid #aaa}
-footer{text-align:center;padding:25px;color:#aab1c5}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#080d1b;
+ color:white;
+}
+header{
+ background:#111a30;
+ padding:22px;
+ text-align:center;
+ border-bottom:1px solid #263858;
+}
+header h1{color:#65a8ff;margin:0;font-size:32px}
+header p{color:#b8c8e8}
+nav{
+ display:flex;
+ flex-wrap:wrap;
+ justify-content:center;
+ gap:10px;
+ padding:15px;
+ background:#0d1528;
+}
+nav a{
+ color:white;
+ text-decoration:none;
+ background:#1b2b49;
+ padding:10px 15px;
+ border-radius:8px;
+}
+nav a:hover,button:hover{background:#3478df}
+main{max-width:1000px;margin:auto;padding:18px}
+.card{
+ background:#111a30;
+ border:1px solid #263858;
+ border-radius:15px;
+ padding:22px;
+ margin:20px 0;
+}
+h2{color:#78b5ff}
+input,textarea,select{
+ width:100%;
+ padding:12px;
+ margin:8px 0 14px;
+ border:1px solid #344768;
+ border-radius:8px;
+ background:#091225;
+ color:white;
+ font-size:15px;
+}
+button{
+ background:#2469d8;
+ color:white;
+ border:0;
+ padding:12px 18px;
+ border-radius:8px;
+ cursor:pointer;
+ margin:5px 4px 5px 0;
+}
+.output{
+ background:#091225;
+ border:1px solid #344768;
+ border-radius:8px;
+ padding:15px;
+ min-height:55px;
+ white-space:pre-wrap;
+ overflow-wrap:anywhere;
+}
+label{color:#c5d7f5}
+footer{
+ text-align:center;
+ padding:25px;
+ color:#9aaccb;
+}
+small{color:#aebbd2}
+@media(max-width:600px){
+ main{padding:10px}
+ .card{padding:16px}
+}
 @media print{
-body{background:white}
-header,nav,main>h1,main>.intro,.card,footer,#printBtn{display:none!important}
-main{padding:0;margin:0}
-#resume{display:block!important;border:0;color:#111}
+ body{background:white;color:black}
+ header,nav,footer,.no-print{display:none!important}
+ #resumeOutput{color:black;background:white;border:0}
 }
 </style>
 </head>
+
 <body>
 
-<header>🌐 AI WORLD</header>
+<header>
+<h1>🌐 AI WORLD</h1>
+<p>Your Smart Digital Tools Platform</p>
+</header>
+
 <nav>
 <a href="#home">Home</a>
 <a href="#writer">Text Writer</a>
-<a href="#texttools">Text Tools</a>
+<a href="#tools">Text Tools</a>
 <a href="#translator">Translator</a>
-<a href="#resume-maker">Resume Maker</a>
+<a href="#resume">Resume Maker</a>
+<a href="#chat">AI Chat</a>
 </nav>
 
-<main id="home">
-<h1>Welcome to AI WORLD</h1>
-<p class="intro" style="text-align:center">Free tools for your daily work.</p>
+<main>
+
+<section class="card" id="home">
+<h2>Welcome to AI WORLD 🚀</h2>
+<p>Explore useful digital tools in one place.</p>
+<p>Simple, fast and easy to use.</p>
+</section>
 
 <section class="card" id="writer">
 <h2>✍️ Text Writer</h2>
-<label>What do you want to write?</label>
-<input id="topic" placeholder="Enter your topic">
-<label>Choose writing type</label>
-<select id="writingType">
+<label>Enter your topic</label>
+<input id="writerTopic" placeholder="Example: Importance of Education">
+<label>Select type</label>
+<select id="writerType">
 <option value="paragraph">Paragraph</option>
-<option value="essay">Essay Outline</option>
-<option value="speech">Speech Outline</option>
-<option value="caption">Social Media Caption</option>
-<option value="email">Email Draft</option>
+<option value="essay">Essay</option>
+<option value="email">Email</option>
+<option value="ideas">Ideas</option>
 </select>
-<button onclick="writeText()">Create Text</button>
-<div class="result" id="writerResult">Your text will appear here.</div>
-<button onclick="copyText('writerResult')">Copy Text</button>
-<p>This is a basic template tool, not an AI-generated response.</p>
+<button onclick="writeText()">Generate Text</button>
+<div class="output" id="writerOutput">Your result will appear here.</div>
+<small>This is a basic template tool, not an AI-generated response.</small>
 </section>
 
-<section class="card" id="texttools">
-<h2>🔤 Text Tools</h2>
-<textarea id="sourceText" rows="5" placeholder="Enter your text"></textarea>
-<button onclick="countWords()">Count Words</button>
-<button onclick="makeUpper()">UPPERCASE</button>
-<button onclick="makeLower()">lowercase</button>
-<button onclick="clearText()">Clear</button>
-<div class="result" id="textResult">Your result will appear here.</div>
+<section class="card" id="tools">
+<h2>🔧 Text Tools</h2>
+<textarea id="toolInput" rows="5" placeholder="Enter your text"></textarea>
+<button onclick="textCount()">Word Count</button>
+<button onclick="changeCase('upper')">UPPERCASE</button>
+<button onclick="changeCase('lower')">lowercase</button>
+<button onclick="copyText('toolInput')">Copy</button>
+<button onclick="document.getElementById('toolInput').value=''">Clear</button>
+<div class="output" id="toolOutput">Text information will appear here.</div>
 </section>
 
 <section class="card" id="translator">
-<h2>🌍 AI WORLD Translator</h2>
-<label>Translate From</label>
+<h2>🌍 Translator</h2>
+<label>From</label>
 <select id="fromLang">
-<option value="auto">Detect Language</option>
 <option value="en">English</option>
 <option value="hi">Hindi</option>
 <option value="mr">Marathi</option>
 </select>
-<button type="button" onclick="swapLanguages()">⇄ Swap Languages</button>
-<label>Translate To</label>
+<label>To</label>
 <select id="toLang">
+<option value="mr">Marathi</option>
 <option value="hi">Hindi</option>
 <option value="en">English</option>
-<option value="mr">Marathi</option>
 </select>
-<label>Enter Text</label>
-<textarea id="translateText" rows="5" placeholder="Type your text here"></textarea>
-<button type="button" onclick="openTranslator()">Translate</button>
-<button type="button" onclick="copyTranslationText()">Copy Text</button>
-<p>Translation opens in Google Translate.</p>
+<textarea id="translateInput" rows="4" placeholder="Enter text to translate"></textarea>
+<button onclick="translateText()">Open Translator</button>
+<button onclick="copyText('translateInput')">Copy Input</button>
+<small>Translation opens in Google Translate in a new tab.</small>
 </section>
 
-<section class="card" id="resume-maker">
+<section class="card" id="resume">
 <h2>📄 Resume Maker</h2>
-<form id="resumeForm">
 <label>Full Name</label>
-<input id="name" required placeholder="Your name">
+<input id="rName" placeholder="Your name">
 <label>Email</label>
-<input id="email" type="email" placeholder="Your email">
+<input id="rEmail" placeholder="Your email">
 <label>Phone</label>
-<input id="phone" placeholder="Your phone">
+<input id="rPhone" placeholder="Your phone">
 <label>Education</label>
-<textarea id="education" placeholder="Your education"></textarea>
+<textarea id="rEducation" placeholder="Your education"></textarea>
 <label>Skills</label>
-<textarea id="skills" placeholder="Your skills"></textarea>
+<textarea id="rSkills" placeholder="Your skills"></textarea>
 <label>Experience</label>
-<textarea id="experience" placeholder="Fresher or work experience"></textarea>
+<textarea id="rExperience" placeholder="Your experience"></textarea>
 <label>Languages</label>
-<input id="languages" placeholder="Marathi, Hindi, English">
-<button type="submit">Create My Resume</button>
-</form>
-<div id="resume">
-<h1 id="rname"></h1>
-<p id="rcontact"></p>
-<h3>EDUCATION</h3><p id="reducation"></p>
-<h3>SKILLS</h3><p id="rskills"></p>
-<h3>EXPERIENCE</h3><p id="rexperience"></p>
-<h3>LANGUAGES</h3><p id="rlanguages"></p>
+<input id="rLanguages" placeholder="English, Hindi, Marathi">
+<button onclick="makeResume()">Create Resume</button>
+<div class="output" id="resumeOutput">Your resume will appear here.</div>
+<button class="no-print" onclick="window.print()">Print / Save PDF</button>
+</section>
+
+<section class="card" id="chat">
+<h2>🤖 AI WORLD CHAT</h2>
+<p>Welcome! Type your message below.</p>
+<div class="output" id="chatMessages" style="min-height:180px;max-height:350px;overflow-y:auto">
+AI WORLD: Chat interface is ready.
 </div>
-<button id="printBtn" style="display:none" onclick="window.print()">Save Resume as PDF</button>
+<label>Choose Language</label>
+<select id="chatLanguage">
+<option>English</option>
+<option>Hindi</option>
+<option>Marathi</option>
+</select>
+<textarea id="chatInput" rows="3" placeholder="Type your message..."></textarea>
+<button onclick="sendChat()">Send Message</button>
+<button onclick="newChat()">New Chat</button>
+<p id="chatStatus"><small>Real AI service is not connected yet.</small></p>
 </section>
 
-<section class="card">
-<h2>🤖 AI Chat</h2>
-<p>Real AI connection is not added yet.</p>
-</section>
-
-<footer>© 2026 AI WORLD | Free Tools</footer>
 </main>
+
+<footer>
+<p>© 2026 AI WORLD | All Rights Reserved</p>
+</footer>
 
 <script>
 function writeText(){
-let topic=document.getElementById("topic").value.trim();
-let type=document.getElementById("writingType").value;
-if(!topic){alert("Please enter a topic.");return;}
-let result="";
-if(type==="paragraph")result="Topic: "+topic+"\n\nIntroduction:\n"+topic+" is an important topic. Learn about its meaning and importance.\n\nConclusion:\nWe should understand "+topic+".";
-if(type==="essay")result="Essay: "+topic+"\n\n1. Introduction\n2. Meaning\n3. Main points\n4. Importance\n5. Conclusion";
-if(type==="speech")result="Respected teachers and my dear friends,\n\nToday I am going to speak about "+topic+".\n\nThank you.";
-if(type==="caption")result="Learning and growing every day! ✨\n"+topic;
-if(type==="email")result="Subject: Regarding "+topic+"\n\nRespected Sir/Madam,\n\nI am writing regarding "+topic+".\n\nThank you.";
-document.getElementById("writerResult").textContent=result;
+ const topic=document.getElementById("writerTopic").value.trim();
+ const type=document.getElementById("writerType").value;
+ const output=document.getElementById("writerOutput");
+
+ if(!topic){output.textContent="Please enter a topic.";return;}
+
+ const templates={
+ paragraph:"Here is a basic paragraph template about "+topic+".\n\n"+topic+" is an important topic. It has many aspects to understand. We should learn more about it and use this knowledge in our daily life.",
+ essay:"Essay Topic: "+topic+"\n\nIntroduction:\n"+topic+" is an important subject.\n\nMain Points:\nWe should understand its importance, benefits and challenges.\n\nConclusion:\nWe should learn more about "+topic+".",
+ email:"Subject: "+topic+"\n\nDear Sir/Madam,\n\nI am writing regarding "+topic+". Please consider my request.\n\nThank you.",
+ ideas:"Ideas about "+topic+":\n\n• Introduction\n• Importance\n• Main features\n• Benefits\n• Challenges\n• Conclusion"
+ };
+ output.textContent=templates[type];
 }
 
-function countWords(){
-let t=document.getElementById("sourceText").value.trim();
-document.getElementById("textResult").textContent="Words: "+(t?t.split(/\s+/).length:0)+"\nCharacters: "+t.length;
+function textCount(){
+ const text=document.getElementById("toolInput").value.trim();
+ const words=text?text.split(/\s+/).length:0;
+ document.getElementById("toolOutput").textContent=
+ "Words: "+words+"\nCharacters: "+document.getElementById("toolInput").value.length;
 }
-function makeUpper(){
-let el=document.getElementById("sourceText");
-el.value=el.value.toUpperCase();
-document.getElementById("textResult").textContent=el.value;
+
+function changeCase(type){
+ const box=document.getElementById("toolInput");
+ box.value=type==="upper"?box.value.toUpperCase():box.value.toLowerCase();
 }
-function makeLower(){
-let el=document.getElementById("sourceText");
-el.value=el.value.toLowerCase();
-document.getElementById("textResult").textContent=el.value;
-}
-function clearText(){
-document.getElementById("sourceText").value="";
-document.getElementById("textResult").textContent="Text cleared.";
-}
+
 function copyText(id){
-navigator.clipboard.writeText(document.getElementById(id).textContent)
-.then(()=>alert("Copied!"))
-.catch(()=>alert("Please copy manually."));
+ const text=document.getElementById(id).value;
+ if(!text){alert("Nothing to copy.");return;}
+ if(navigator.clipboard && window.isSecureContext){
+  navigator.clipboard.writeText(text).then(()=>alert("Copied!")).catch(()=>alert("Copy not available. Please select and copy manually."));
+ }else{
+  alert("Please select the text and copy it manually.");
+ }
 }
 
-function swapLanguages(){
-let from=document.getElementById("fromLang");
-let to=document.getElementById("toLang");
-if(from.value==="auto")return;
-let old=from.value;
-from.value=to.value;
-to.value=old;
-}
-function openTranslator(){
-let text=document.getElementById("translateText").value.trim();
-if(!text){alert("Please enter text first.");return;}
-let from=document.getElementById("fromLang").value;
-let to=document.getElementById("toLang").value;
-let url="https://translate.google.com/?sl="+from+"&tl="+to+"&text="+encodeURIComponent(text)+"&op=translate";
-window.open(url,"_blank");
-}
-function copyTranslationText(){
-let text=document.getElementById("translateText").value;
-if(!text){alert("Please enter text first.");return;}
-navigator.clipboard.writeText(text)
-.then(()=>alert("Text copied!"))
-.catch(()=>alert("Please copy manually."));
+function translateText(){
+ const text=document.getElementById("translateInput").value.trim();
+ if(!text){alert("Please enter text.");return;}
+ const from=document.getElementById("fromLang").value;
+ const to=document.getElementById("toLang").value;
+ const url="https://translate.google.com/?sl="+from+"&tl="+to+"&text="+encodeURIComponent(text)+"&op=translate";
+ window.open(url,"_blank");
 }
 
-document.getElementById("resumeForm").addEventListener("submit",function(e){
-e.preventDefault();
-let get=id=>document.getElementById(id).value.trim();
-document.getElementById("rname").textContent=get("name");
-document.getElementById("rcontact").textContent=[get("email"),get("phone")].filter(Boolean).join(" | ");
-document.getElementById("reducation").textContent=get("education");
-document.getElementById("rskills").textContent=get("skills");
-document.getElementById("rexperience").textContent=get("experience");
-document.getElementById("rlanguages").textContent=get("languages");
-document.getElementById("resume").style.display="block";
-document.getElementById("printBtn").style.display="inline-block";
-document.getElementById("resume").scrollIntoView({behavior:"smooth"});
-});
+function makeResume(){
+ const name=document.getElementById("rName").value.trim();
+ if(!name){alert("Please enter your name.");return;}
+
+ const fields=[
+ ["Email","rEmail"],
+ ["Phone","rPhone"],
+ ["Education","rEducation"],
+ ["Skills","rSkills"],
+ ["Experience","rExperience"],
+ ["Languages","rLanguages"]
+ ];
+ let html="<h2>"+escapeHTML(name)+"</h2>";
+ fields.forEach(([label,id])=>{
+  const value=document.getElementById(id).value.trim();
+  if(value){
+   html+="<h3>"+label+"</h3><p>"+escapeHTML(value).replace(/\n/g,"<br>")+"</p>";
+  }
+ });
+ document.getElementById("resumeOutput").innerHTML=html;
+}
+
+function escapeHTML(value){
+ return value.replace(/[&<>"']/g,function(ch){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch];
+ });
+}
+
+function sendChat(){
+ const input=document.getElementById("chatInput");
+ const message=input.value.trim();
+ if(!message){alert("Please type a message.");return;}
+
+ const area=document.getElementById("chatMessages");
+ const user=document.createElement("p");
+ user.textContent="You: "+message;
+ area.appendChild(user);
+
+ const status=document.getElementById("chatStatus");
+ status.textContent="Your message is displayed, but an AI service is not connected yet.";
+
+ input.value="";
+ area.scrollTop=area.scrollHeight;
+}
+
+function newChat(){
+ document.getElementById("chatMessages").textContent="AI WORLD: New chat started.";
+ document.getElementById("chatStatus").textContent="AI service is not connected yet.";
+}
 </script>
+
 </body>
 </html>
-
-
-
 
