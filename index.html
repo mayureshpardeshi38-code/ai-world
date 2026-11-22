@@ -288,20 +288,52 @@ function escapeHTML(value){
 }
 
 function sendChat(){
- const input=document.getElementById("chatInput");
- const message=input.value.trim();
- if(!message){alert("Please type a message.");return;}
 
- const area=document.getElementById("chatMessages");
- const user=document.createElement("p");
- user.textContent="You: "+message;
- area.appendChild(user);
+async function sendChat() {
+  const input = document.getElementById("chatInput");
+  const message = input.value.trim();
+  const area = document.getElementById("chatMessages");
+  const status = document.getElementById("chatStatus");
 
- const status=document.getElementById("chatStatus");
- status.textContent="Your message is displayed, but an AI service is not connected yet.";
+  if (!message) {
+    alert("Please type a message.");
+    return;
+  }
 
- input.value="";
- area.scrollTop=area.scrollHeight;
+  const user = document.createElement("p");
+  user.textContent = "You: " + message;
+  area.appendChild(user);
+
+  input.value = "";
+  status.textContent = "AI is thinking...";
+
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message: message })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "AI service error");
+    }
+
+    const bot = document.createElement("p");
+    bot.textContent = "AI WORLD: " + data.answer;
+    area.appendChild(bot);
+
+    status.textContent = "AI response received.";
+
+  } catch (error) {
+    status.textContent = "AI connection failed. Please try again.";
+  }
+
+  area.scrollTop = area.scrollHeight;
+}
 }
 
 function newChat(){
