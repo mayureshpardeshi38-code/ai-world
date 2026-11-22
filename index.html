@@ -4,101 +4,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI WORLD - Resume Maker</title>
+<title>AI WORLD - Free Tools</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:#0b1020;color:white}
-header{padding:20px 7%;background:#17213a;font-size:25px;font-weight:bold;color:#9aaaff}
-main{max-width:1000px;margin:auto;padding:25px}
+body{margin:0;font-family:Arial,sans-serif;background:#0b1020;color:white}
+header{background:#17213a;padding:20px 7%;font-size:25px;font-weight:bold;color:#9aaaff}
+nav{text-align:center;padding:15px;background:#121a30}
+nav a{color:white;text-decoration:none;margin:10px}
+main{max-width:1000px;margin:auto;padding:20px}
 h1,h2{text-align:center}
-p{color:#cbd1e0}
-.card{background:#17213a;padding:22px;border-radius:14px;margin:20px 0}
-input,textarea{width:100%;padding:12px;margin:8px 0 15px;border:1px solid #53617e;border-radius:8px;background:#0b1020;color:white}
-label{font-weight:bold}
-button{padding:13px 20px;border:0;border-radius:8px;background:#6477ff;color:white;font-weight:bold;cursor:pointer;margin:5px}
-#resume{background:white;color:#20283a;padding:30px;border-radius:10px;min-height:300px;display:none}
-#resume h1{color:#263b78}
-#resume h3{color:#263b78;border-bottom:1px solid #aaa;padding-bottom:5px}
+.card{background:#17213a;padding:22px;border-radius:14px;margin:18px 0}
+input,textarea,select{width:100%;padding:12px;margin:8px 0 15px;border:1px solid #53617e;border-radius:8px;background:#0b1020;color:white}
+button{padding:12px 18px;border:0;border-radius:8px;background:#6477ff;color:white;font-weight:bold;cursor:pointer;margin:5px}
+.result{background:white;color:#20283a;padding:15px;border-radius:8px;white-space:pre-wrap;min-height:40px}
+small{color:#cbd1e0}
+#resume{background:white;color:#222;padding:25px;border-radius:10px;display:none}
 #resume p{color:#222;white-space:pre-wrap}
+#resume h3{color:#263b78;border-bottom:1px solid #aaa}
 footer{text-align:center;padding:25px;color:#aab1c5}
-@media print{
-body{background:white}
-header,main>h1,main>.intro,.form-card,.actions,footer{display:none!important}
-main{padding:0;margin:0}
-#resume{display:block!important;border:0;border-radius:0;padding:20px;color:#111}
-#resume p{color:#111}
-}
 </style>
 </head>
 <body>
-<header>🌐 AI WORLD</header>
-<main>
-<h1>Professional Resume Maker</h1>
-<p class="intro" style="text-align:center">Create your professional resume for free.</p>
 
-<div class="card form-card">
-<h2>Enter Your Details</h2>
+<header>🌐 AI WORLD</header>
+<nav>
+<a href="#home">Home</a>
+<a href="#writer">Text Writer</a>
+<a href="#texttools">Text Tools</a>
+<a href="#resume-maker">Resume Maker</a>
+</nav>
+
+<main id="home">
+<h1>Welcome to AI WORLD</h1>
+<p style="text-align:center">Free tools for your daily work.</p>
+
+<section class="card" id="writer">
+<h2>✍️ Text Writer</h2>
+<label>What do you want to write?</label>
+<input id="topic" placeholder="Example: My College">
+
+<label>Choose writing type</label>
+<select id="writingType">
+<option value="paragraph">Paragraph</option>
+<option value="essay">Essay outline</option>
+<option value="speech">Speech outline</option>
+<option value="caption">Social media caption</option>
+<option value="email">Email draft</option>
+</select>
+<button onclick="writeText()">Create Text</button>
+<div class="result" id="writerResult">Your text will appear here.</div>
+<button onclick="copyText('writerResult')">Copy Text</button>
+<small>This is a basic template tool, not an AI-generated response.</small>
+</section>
+
+<section class="card" id="texttools">
+<h2>🔤 Text Tools</h2>
+<label>Enter your text</label>
+<textarea id="sourceText" rows="5" placeholder="Type or paste your text"></textarea>
+<button onclick="countWords()">Count Words</button>
+<button onclick="makeUpper()">UPPERCASE</button>
+<button onclick="makeLower()">lowercase</button>
+<button onclick="clearText()">Clear</button>
+<div class="result" id="textResult">Your result will appear here.</div>
+</section>
+
+<section class="card" id="resume-maker">
+<h2>📄 Resume Maker</h2>
 <form id="resumeForm">
 <label>Full Name</label>
-<input id="name" placeholder="Enter your full name" required>
-
+<input id="name" required placeholder="Your name">
 <label>Email</label>
-<input id="email" type="email" placeholder="Enter your email">
-
-<label>Phone Number</label>
-<input id="phone" placeholder="Enter your phone number">
-
-<label>Address</label>
-<input id="address" placeholder="Enter your city and address">
-
-<label>Career Objective</label>
-<textarea id="objective" rows="3" placeholder="Write your career objective"></textarea>
-
+<input id="email" type="email" placeholder="Your email">
+<label>Phone</label>
+<input id="phone" placeholder="Your phone">
 <label>Education</label>
-<textarea id="education" rows="3" placeholder="Your school, college, degree and year"></textarea>
-
+<textarea id="education" placeholder="Your education"></textarea>
 <label>Skills</label>
-<textarea id="skills" rows="3" placeholder="Your skills"></textarea>
-
+<textarea id="skills" placeholder="Your skills"></textarea>
 <label>Experience</label>
-<textarea id="experience" rows="3" placeholder="Your work experience or fresher"></textarea>
-
+<textarea id="experience" placeholder="Fresher or work experience"></textarea>
 <label>Languages</label>
-<input id="languages" placeholder="Hindi, English, Marathi">
-
+<input id="languages" placeholder="Marathi, Hindi, English">
 <button type="submit">Create My Resume</button>
 </form>
-</div>
-
 <div id="resume">
 <h1 id="rname"></h1>
 <p id="rcontact"></p>
-<h3>CAREER OBJECTIVE</h3>
-<p id="robjective"></p>
-<h3>EDUCATION</h3>
-<p id="reducation"></p>
-<h3>SKILLS</h3>
-<p id="rskills"></p>
-<h3>EXPERIENCE</h3>
-<p id="rexperience"></p>
-<h3>LANGUAGES</h3>
-<p id="rlanguages"></p>
+<h3>EDUCATION</h3><p id="reducation"></p>
+<h3>SKILLS</h3><p id="rskills"></p>
+<h3>EXPERIENCE</h3><p id="rexperience"></p>
+<h3>LANGUAGES</h3><p id="rlanguages"></p>
 </div>
+<button id="printBtn" style="display:none" onclick="window.print()">Save Resume as PDF</button>
+</section>
 
-<div class="actions" style="text-align:center">
-<button id="printBtn" style="display:none" onclick="window.print()">Download / Save Resume as PDF</button>
-</div>
+<section class="card">
+<h2>🌍 Translator</h2>
+<p>Translator tool is coming soon.</p>
+</section>
+
+<section class="card">
+<h2>🤖 AI Chat</h2>
+<p>Real AI connection is not added yet.</p>
+</section>
+
+<footer>© 2026 AI WORLD | Free Tools</footer>
 </main>
-<footer>© 2026 AI WORLD | Free Resume Maker</footer>
 
 <script>
+function writeText(){
+let topic=document.getElementById("topic").value.trim();
+let type=document.getElementById("writingType").value;
+let result="";
+if(!topic){alert("Please enter a topic.");return;}
+if(type==="paragraph") result="Topic: "+topic+"\n\nIntroduction:\n"+topic+" is an important topic. It is useful to learn about its meaning, importance and benefits.\n\nConclusion:\nWe should understand "+topic+" and learn more about it.";
+if(type==="essay") result="Essay Topic: "+topic+"\n\n1. Introduction\n2. Meaning and background\n3. Main points\n4. Importance\n5. Conclusion";
+if(type==="speech") result="Speech Topic: "+topic+"\n\nRespected teachers and my dear friends,\n\nToday I am going to speak about "+topic+".\n\nThank you.";
+if(type==="caption") result="Learning and growing every day! ✨\nTopic: "+topic;
+if(type==="email") result="Subject: Regarding "+topic+"\n\nRespected Sir/Madam,\n\nI am writing regarding "+topic+". Please let me know the details.\n\nThank you.";
+document.getElementById("writerResult").textContent=result;
+}
+function countWords(){
+let t=document.getElementById("sourceText").value.trim();
+let words=t?t.split(/\s+/).length:0;
+document.getElementById("textResult").textContent="Words: "+words+"\nCharacters: "+t.length;
+}
+function makeUpper(){
+document.getElementById("sourceText").value=document.getElementById("sourceText").value.toUpperCase();
+document.getElementById("textResult").textContent=document.getElementById("sourceText").value;
+}
+function makeLower(){
+document.getElementById("sourceText").value=document.getElementById("sourceText").value.toLowerCase();
+document.getElementById("textResult").textContent=document.getElementById("sourceText").value;
+}
+function clearText(){
+document.getElementById("sourceText").value="";
+document.getElementById("textResult").textContent="Text cleared.";
+}
+function copyText(id){
+let text=document.getElementById(id).textContent;
+if(navigator.clipboard && window.isSecureContext){
+navigator.clipboard.writeText(text).then(()=>alert("Copied!")).catch(()=>alert("Please select and copy the text."));
+}else{
+alert("Please select and copy the text manually.");
+}
+}
 document.getElementById("resumeForm").addEventListener("submit",function(e){
 e.preventDefault();
-const get=id=>document.getElementById(id).value.trim();
+let get=id=>document.getElementById(id).value.trim();
 document.getElementById("rname").textContent=get("name");
-document.getElementById("rcontact").textContent=
-[get("email"),get("phone"),get("address")].filter(Boolean).join(" | ");
-document.getElementById("robjective").textContent=get("objective");
+document.getElementById("rcontact").textContent=[get("email"),get("phone")].filter(Boolean).join(" | ");
 document.getElementById("reducation").textContent=get("education");
 document.getElementById("rskills").textContent=get("skills");
 document.getElementById("rexperience").textContent=get("experience");
@@ -110,3 +165,4 @@ document.getElementById("resume").scrollIntoView({behavior:"smooth"});
 </script>
 </body>
 </html>
+
