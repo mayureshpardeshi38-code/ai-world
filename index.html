@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI WORLD - Your AI Platform</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#0b1020;color:white}
+header{padding:22px 7%;display:flex;justify-content:space-between;align-items:center;background:#121a30}
+.logo{font-size:25px;font-weight:bold;color:#8b9cff}
+nav a{color:white;text-decoration:none;margin-left:18px}
+.hero{text-align:center;padding:65px 20px}
+.hero h1{font-size:48px;margin-bottom:12px}
+.hero span{color:#8b9cff}
+.hero p{color:#c5c9d8}
+button{background:#6477ff;color:white;border:0;padding:12px 20px;border-radius:9px;cursor:pointer}
+section{padding:25px 7%}
+h2{text-align:center}
+.tools,.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:#17213a;padding:23px;border-radius:15px;border:1px solid #293653}
+.card h3{margin-top:0}
+.card p{color:#c5c9d8}
+.status{color:#ffd477;font-size:13px}
+footer{text-align:center;padding:30px;color:#aab1c5}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">🌐 AI WORLD</div>
+<nav>
+<a href="#tools">Tools</a>
+<a href="#plans">Plans</a>
+</nav>
+</header>
+
+<div class="hero">
+<h1>Welcome to <span>AI WORLD</span></h1>
+<p>Your smart platform for AI tools in one place.</p>
+<button onclick="document.getElementById('tools').scrollIntoView()">Explore AI Tools</button>
+</div>
+
+<section id="tools">
+<h2>🚀 Our AI Tools</h2>
+<div class="tools">
+<div class="card"><h3>💬 AI Chat</h3><p>Chat in English, Hindi and Marathi.</p><p class="status">AI connection required</p></div>
+<div class="card"><h3>🎨 Image Generator</h3><p>Create images using AI.</p><p class="status">AI connection required</p></div>
+<div class="card"><h3>🎬 Video Generator</h3><p>Explore AI video creation.</p><p class="status">AI connection required</p></div>
+<div class="card"><h3>✍️ Text Writer</h3><p>Write ideas, articles and content.</p><p class="status">AI connection required</p></div>
+<div class="card"><h3>🌍 Translator</h3><p>Translate between languages.</p><p class="status">AI connection required</p></div>
+<div class="card"><h3>📄 Resume Maker</h3><p>Prepare a simple professional resume.</p><p class="status">Coming soon</p></div>
+</div>
+</section>
+
+<section id="plans">
+<h2>Choose Your Plan</h2>
+<div class="plans">
+<div class="card">
+<h3>FREE</h3>
+<h2>₹0</h2>
+<p>Basic access to available tools.</p>
+<p>Limited usage when AI is connected.</p>
+</div>
+<div class="card">
+<h3>⭐ PREMIUM</h3>
+<h2>Coming Soon</h2>
+<p>Higher usage limits.</p>
+<p>Advanced AI features when available.</p>
+</div>
+</div>
+</section>
+
+<footer>© 2026 AI WORLD | Your AI Platform</footer>
+</body>
+</html>
