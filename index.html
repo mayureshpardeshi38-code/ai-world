@@ -4,73 +4,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI WORLD - Your AI Platform</title>
+<title>AI WORLD - Resume Maker</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#0b1020;color:white}
-header{padding:22px 7%;display:flex;justify-content:space-between;align-items:center;background:#121a30}
-.logo{font-size:25px;font-weight:bold;color:#8b9cff}
-nav a{color:white;text-decoration:none;margin-left:18px}
-.hero{text-align:center;padding:65px 20px}
-.hero h1{font-size:48px;margin-bottom:12px}
-.hero span{color:#8b9cff}
-.hero p{color:#c5c9d8}
-button{background:#6477ff;color:white;border:0;padding:12px 20px;border-radius:9px;cursor:pointer}
-section{padding:25px 7%}
-h2{text-align:center}
-.tools,.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.card{background:#17213a;padding:23px;border-radius:15px;border:1px solid #293653}
-.card h3{margin-top:0}
-.card p{color:#c5c9d8}
-.status{color:#ffd477;font-size:13px}
-footer{text-align:center;padding:30px;color:#aab1c5}
+body{margin:0;font-family:Arial;background:#0b1020;color:white}
+header{padding:20px 7%;background:#17213a;font-size:25px;font-weight:bold;color:#9aaaff}
+main{max-width:1000px;margin:auto;padding:25px}
+h1,h2{text-align:center}
+p{color:#cbd1e0}
+.card{background:#17213a;padding:22px;border-radius:14px;margin:20px 0}
+input,textarea{width:100%;padding:12px;margin:8px 0 15px;border:1px solid #53617e;border-radius:8px;background:#0b1020;color:white}
+label{font-weight:bold}
+button{padding:13px 20px;border:0;border-radius:8px;background:#6477ff;color:white;font-weight:bold;cursor:pointer;margin:5px}
+#resume{background:white;color:#20283a;padding:30px;border-radius:10px;min-height:300px;display:none}
+#resume h1{color:#263b78}
+#resume h3{color:#263b78;border-bottom:1px solid #aaa;padding-bottom:5px}
+#resume p{color:#222;white-space:pre-wrap}
+footer{text-align:center;padding:25px;color:#aab1c5}
+@media print{
+body{background:white}
+header,main>h1,main>.intro,.form-card,.actions,footer{display:none!important}
+main{padding:0;margin:0}
+#resume{display:block!important;border:0;border-radius:0;padding:20px;color:#111}
+#resume p{color:#111}
+}
 </style>
 </head>
 <body>
-<header>
-<div class="logo">🌐 AI WORLD</div>
-<nav>
-<a href="#tools">Tools</a>
-<a href="#plans">Plans</a>
-</nav>
-</header>
+<header>🌐 AI WORLD</header>
+<main>
+<h1>Professional Resume Maker</h1>
+<p class="intro" style="text-align:center">Create your professional resume for free.</p>
 
-<div class="hero">
-<h1>Welcome to <span>AI WORLD</span></h1>
-<p>Your smart platform for AI tools in one place.</p>
-<button onclick="document.getElementById('tools').scrollIntoView()">Explore AI Tools</button>
+<div class="card form-card">
+<h2>Enter Your Details</h2>
+<form id="resumeForm">
+<label>Full Name</label>
+<input id="name" placeholder="Enter your full name" required>
+
+<label>Email</label>
+<input id="email" type="email" placeholder="Enter your email">
+
+<label>Phone Number</label>
+<input id="phone" placeholder="Enter your phone number">
+
+<label>Address</label>
+<input id="address" placeholder="Enter your city and address">
+
+<label>Career Objective</label>
+<textarea id="objective" rows="3" placeholder="Write your career objective"></textarea>
+
+<label>Education</label>
+<textarea id="education" rows="3" placeholder="Your school, college, degree and year"></textarea>
+
+<label>Skills</label>
+<textarea id="skills" rows="3" placeholder="Your skills"></textarea>
+
+<label>Experience</label>
+<textarea id="experience" rows="3" placeholder="Your work experience or fresher"></textarea>
+
+<label>Languages</label>
+<input id="languages" placeholder="Hindi, English, Marathi">
+
+<button type="submit">Create My Resume</button>
+</form>
 </div>
 
-<section id="tools">
-<h2>🚀 Our AI Tools</h2>
-<div class="tools">
-<div class="card"><h3>💬 AI Chat</h3><p>Chat in English, Hindi and Marathi.</p><p class="status">AI connection required</p></div>
-<div class="card"><h3>🎨 Image Generator</h3><p>Create images using AI.</p><p class="status">AI connection required</p></div>
-<div class="card"><h3>🎬 Video Generator</h3><p>Explore AI video creation.</p><p class="status">AI connection required</p></div>
-<div class="card"><h3>✍️ Text Writer</h3><p>Write ideas, articles and content.</p><p class="status">AI connection required</p></div>
-<div class="card"><h3>🌍 Translator</h3><p>Translate between languages.</p><p class="status">AI connection required</p></div>
-<div class="card"><h3>📄 Resume Maker</h3><p>Prepare a simple professional resume.</p><p class="status">Coming soon</p></div>
+<div id="resume">
+<h1 id="rname"></h1>
+<p id="rcontact"></p>
+<h3>CAREER OBJECTIVE</h3>
+<p id="robjective"></p>
+<h3>EDUCATION</h3>
+<p id="reducation"></p>
+<h3>SKILLS</h3>
+<p id="rskills"></p>
+<h3>EXPERIENCE</h3>
+<p id="rexperience"></p>
+<h3>LANGUAGES</h3>
+<p id="rlanguages"></p>
 </div>
-</section>
 
-<section id="plans">
-<h2>Choose Your Plan</h2>
-<div class="plans">
-<div class="card">
-<h3>FREE</h3>
-<h2>₹0</h2>
-<p>Basic access to available tools.</p>
-<p>Limited usage when AI is connected.</p>
+<div class="actions" style="text-align:center">
+<button id="printBtn" style="display:none" onclick="window.print()">Download / Save Resume as PDF</button>
 </div>
-<div class="card">
-<h3>⭐ PREMIUM</h3>
-<h2>Coming Soon</h2>
-<p>Higher usage limits.</p>
-<p>Advanced AI features when available.</p>
-</div>
-</div>
-</section>
+</main>
+<footer>© 2026 AI WORLD | Free Resume Maker</footer>
 
-<footer>© 2026 AI WORLD | Your AI Platform</footer>
+<script>
+document.getElementById("resumeForm").addEventListener("submit",function(e){
+e.preventDefault();
+const get=id=>document.getElementById(id).value.trim();
+document.getElementById("rname").textContent=get("name");
+document.getElementById("rcontact").textContent=
+[get("email"),get("phone"),get("address")].filter(Boolean).join(" | ");
+document.getElementById("robjective").textContent=get("objective");
+document.getElementById("reducation").textContent=get("education");
+document.getElementById("rskills").textContent=get("skills");
+document.getElementById("rexperience").textContent=get("experience");
+document.getElementById("rlanguages").textContent=get("languages");
+document.getElementById("resume").style.display="block";
+document.getElementById("printBtn").style.display="inline-block";
+document.getElementById("resume").scrollIntoView({behavior:"smooth"});
+});
+</script>
 </body>
 </html>
